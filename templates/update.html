@@ -1,0 +1,42 @@
+<!--
+	In this HTML file I will ADD and UPDATE tasks
+-->
+{% extends "base.html" %}
+{% block head %}
+<title>Task Master {{work}}</title>
+{% endblock %}
+
+
+{% block body %}
+<h3>Task Master {{work}}</h3>
+
+{% if work == "Adder" %}
+	<form method="post" action="/add">
+{% elif work == "Updater" %}
+	<form method="post" action="/update/{{ task.sr }}">
+{% endif %}
+	<table border='1' cellspacing="5">
+		<tr><th>Task</th><td>
+			<select name="task" required>
+				<!-- <option>Not Any!</option> -->
+				{% for i in tasks_name %}
+				{% if i.name==task.task %}
+					<option selected>{{i.name}}</option>
+				{% else %}
+					<option>{{i.name}}</option>
+				{% endif %}
+				{% endfor %}
+				<!-- <option>Others!</option> -->
+			</select>
+		</td></tr>
+	<tr><th>Quantity</th><td><input type="number" name="quantity" value="{{ task.quantity }}" required></td></tr>
+	<tr><th>Unit</th><td><input type="text" name="unit" value="{{ task.unit }}" ></td></tr>
+	<tr><th>Date</th><td><input type="date" name="date" value="{{ task.date }}" required></td></tr>
+	<tr><th>Time</th><td><input type="time" name="time" value="{{ task.time }}" required></td></tr>
+
+	<tr><td colspan="2"><input type="submit" value="Submit"></td></tr>
+	<tr><td colspan="2"><input type="button" value="Cancel!" onclick="window.location.href='/'"></td></tr>
+	</table>
+
+</form>
+{% endblock %}

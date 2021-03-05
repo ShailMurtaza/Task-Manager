@@ -1,0 +1,35 @@
+<!--
+	In this HTML file I will search for  tasks
+-->
+{% extends 'base.html' %}
+{% block head %}
+<style>
+	.fifty {width: 47%;}
+</style>
+{% endblock %}
+
+{% block body %}
+
+<form action="/search/tasks" method="POST">
+<table border="1">
+	<tr><th>Search By: </th></tr>
+	<tr><th>Task</th><td><input placeholder="Enter Taks Name" type="text" name="task"></td></tr>
+	<tr>
+		<th>Quantity</th><td>
+		<input class="fifty" type="number" name="quantity_min" placeholder="Min Quantity"> to
+		<input class="fifty" type="number" name="quantity_max" placeholder="Max Quantity">
+	</td></tr>
+	<tr>
+		<th>Unit</th><td>
+			<input type="text" name="unit" placeholder="Unit">
+		</td></tr>
+	<tr><th> Date</th><td>
+		<input class="fifty" type="date" name="date_min"> to
+		<input class="fifty" type="date" name="date_max">
+	</td></tr>
+	<tr>
+		<td colspan="2"><input type="submit" value="Search">
+	</td></tr>
+</table>
+</form>
+{% endblock %}

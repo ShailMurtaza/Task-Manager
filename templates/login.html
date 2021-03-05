@@ -1,0 +1,45 @@
+<!--
+	In this HTML file I will Login or Signup for task Managaer
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		var cssRule =
+    "color: rgb(249, 162, 34);" +
+    "font-size: 60px;" +
+    "font-weight: bold;" +
+    "text-shadow: 1px 1px 5px rgb(249, 162, 34);" +
+    "filter: dropshadow(color=rgb(249, 162, 34), offx=1, offy=1);";
+console.log("%cSTOP", cssRule);
+	</script>
+	<title>Login / Signup</title>
+</head>
+<style>
+	body
+	{
+		text-align: center;
+	}
+	h3
+	{
+		color: rgb(0, 13, 190);
+	}
+</style>
+<body bgcolor=#d3d3d3>
+	<font size=5><span style="background-color:#20b5d5;">{{ flash }}</span></font>
+	<form action="/login" method='POST'>
+		<h3>LOGIN</h3>
+		<input type="text" placeholder="Enter your Username" name="USERNAME" required>
+		<input type="password" placeholder="Enter Your Password" name="PASSWORD" required>
+		<input type="submit" value="Send">
+	</form>
+	<form action="/signup" method="POST">
+		<h3>CREATE NEW ACCOUNT</h3>
+		<input type="text" placeholder="Enter your Username" name="USERNAME" required>
+		<input type="password" placeholder="Enter Your Password" name="PASSWORD" required>
+		<input type="submit" value="Send">
+	</form>
+</body>
+</html>

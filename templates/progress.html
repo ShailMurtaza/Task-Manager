@@ -1,0 +1,86 @@
+<!--
+	In this HTML file I will add mine bio data
+-->
+{% extends "base.html" %}
+
+{% block head %}
+<title>Progressing Bio Data</title>
+{% endblock %}
+
+{% block body %}
+<div class="fon"> Progressing Bio Data </div>
+<button id="myBtn" onclick="shail('myModal', 'myBtn');">ADD!</button>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+	<div class="modal-header">
+	  <span class="close">&times;</span>
+	  <h3>Add New Progress</h3>
+	</div>
+	<div class="modal-body">
+		<form action="/progress" method="POST">
+		<table>
+			<tr><th>Progress</th><td><input type="text" placeholder='Progress'  name="progress" required></td></tr>
+			<tr><th>How Much</th><td><input type="text" placeholder='How Much' name="how_much" required></td></tr>
+			<tr><th>Check Date</th><td><input type="date" placeholder='Check Date' name="date" required></td></tr>
+			<tr><th>Check Time</th><td><input type="time" placeholder='Check Time' name="time" required></td></tr>
+			<tr><th colspan="2"><input type="submit" value="ADD!"></th></tr>
+		</table>
+		</form>
+	</div>
+	<div class="modal-footer"><h3> </h3></div>
+  </div>
+</div>
+
+<!--       Showing Data of progressing    START     -->
+{% if progress|length <1 %}
+<h3> <spam style="background-color:red;color:blue;">Not Any Progress</spam> </h3>
+{% else %}
+
+<table border="1" cellspacing="5" style="width: 50%;">
+<tr>
+<th>No</th>
+<th>Progress</th>
+<th>How Much</th>
+<th>Date</th>
+<th>Time</th>
+<th>Actions</th>
+</tr>
+<tr>
+{% for prog in progress %}
+<td>{{ prog.no }}</td>
+<td>{{ prog.progress }}</td>
+<td>{{ prog.HowMuch }}</td>
+<td>{{ prog.date }}</td>
+<td>{{ prog.time }}</td>
+<td>
+	<button id="myBtn{{prog.sr}}" onclick="shail('myModal{{prog.sr}}', 'myBtn{{prog.sr}}');">Update</button>
+	<div id="myModal{{prog.sr}}" class="modal">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <span class="close">&times;</span>
+		  <h3>Update Bio Data</h3>
+		</div>
+		<div class="modal-body">
+			<form action="/progress/update/{{prog.sr}}" method="POST">
+				
+				<table align="center">
+					<tr><th>Progress</th><td><input type="text" placeholder='Progress'  name="progress" value='{{prog.progress}}' required></td></tr>
+					<tr><th>How Much</th><td><input type="text" placeholder='How Much' name="how_much" value='{{prog.HowMuch}}' required></td></tr>
+					<tr><th>Check Date</th><td><input type="date" placeholder='Check Date' name="date" value='{{prog.date}}' required></td></tr>
+					<tr><th>Check Time</th><td><input type="time" placeholder='Check Time' name="time" value='{{prog.time}}' required></td></tr>
+					<tr><th colspan="2"><input type="submit" value="UPDATE!!"></th></tr>
+				</table>
+			</form>
+		</div>
+		<div class="modal-footer"><h3> </h3></div>
+	  </div>
+	</div>
+	<button onclick="GoTo('/progress/delete/{{prog.sr}}')">Delete</button>
+</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+<!--       Showing Data of progressing    END      -->
+<script src="/static/popup.js"></script>
+{% endblock %}

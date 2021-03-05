@@ -1,0 +1,19 @@
+input, select, button
+{
+	width: 100%;
+}
+
+.w3-tangerine 
+{
+	font-family: "Tangerine", serif;
+}
+.fon 
+{
+   font-family: 'Merienda';font-size: 22px;
+}
+
+table, th, td {
+	max-width:60%;
+	text-align:center;
+}
+

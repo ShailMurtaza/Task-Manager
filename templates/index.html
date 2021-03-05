@@ -1,0 +1,47 @@
+<!--
+	In this HTML file I will display all TASKS
+-->
+{% extends "base.html" %}
+
+{% block head %}
+<title>Task Master</title>
+<script>
+	function to12Hours(time, sr) {
+	var timeString = time
+	var timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+	.toLocaleTimeString({},
+	{timeZone:'UTC',hour12:true,hour:'numeric',minute:'numeric'}
+	);
+	return timeString12hr;
+	}
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="fon"> Task Manager </div>
+<button style="width: 50%;" onclick="GoTo('/search/tasks')">Search</button>
+{% if tasks|length <1 %}
+<h3> <spam style="background-color:red;color:blue;">Not any Task</spam> </h3>
+{% else %}
+<table border="1" cellspacing="5" style="width: 50%;">
+<tr>
+<th>No</th>
+<th>Task</th>
+<th>Quantity</th>
+<th>Date</th>
+<th>Time</th>
+<th>Actions</th>
+</tr>
+<tr>
+{% for task in tasks %}
+<td>{{ task.no }}</td>
+<td>{{ task.task }}</td>
+<td>{{ task.quantity }} {{ task.unit }}</td>
+<td>{{ task.date }}</td>
+<td>{{ task.time }}</td>
+<td><a href="/update/{{ task.sr }}">Update</a><br><a href="/delete/{{ task.sr }}" onclick="return confirm('Are you sure ?')">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}
